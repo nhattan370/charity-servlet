@@ -1,0 +1,14 @@
+# Maven build
+/target/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+# Tomcat config (Eclipse Servers)
+Servers/
+
+# Logs
+*.log
+
+.metadata
