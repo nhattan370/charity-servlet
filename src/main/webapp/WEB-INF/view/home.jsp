@@ -63,7 +63,7 @@
 	         })
 	    </script>
 	</div>
-	<c:remove var="donation" scope="session"/>
+	<c:remove var="donate" scope="session"/>
 </c:if>
 
 <div class="site-wrap">
@@ -157,6 +157,15 @@
 										   >
 										   Quyên góp
 										</button>  
+									<!--
+									<button style="margin-top: 20px" 
+								     	class="btn btn-primary py-2" 
+								     	data-toggle="modal" 
+									   onclick="event.stopPropagation(); $('#exampleModal${donation.id}').modal('show');"								   
+								    >
+									   Quyên góp
+									</button>
+									-->
 	                            	</c:when>
 	                            	<c:otherwise>
 		                            	<button style="margin-top: 20px;opacity: 0.5; width:113px; height:42px" 
@@ -169,15 +178,7 @@
 										</button>  
 	                            	</c:otherwise>
 	                            </c:choose>
-								<!--
-								<button style="margin-top: 20px" 
-							     	class="btn btn-primary py-2" 
-							     	data-toggle="modal" 
-								   onclick="event.stopPropagation(); $('#exampleModal${donation.id}').modal('show');"								   
-							    >
-								   Quyên góp
-								</button>
-								-->
+
 	                            <p style="margin-top: 20px;background-color: white !important;" class="btn py-2">
 	                            	<span style="color: white">Quyên góp</span>
 	                            </p>
@@ -211,6 +212,8 @@
                                                        id="addname" name="idUser" >
                                                 <input type="hidden" class="form-control" value="${donation.id}"
                                                        id="addname" name="idDonation" required>
+                                                <input type="hidden" class="form-control" value="home"
+                                                       id="home-path" name="path" required>
 
                                                 <label for="addname"
                                                        class="col-form-label">Lời nhắn:</label>

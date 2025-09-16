@@ -11,13 +11,12 @@ public class UserDonation {
     private int id;
     private String created;
     private String name;
-//    private int status;
     private String text;
     private int money;
-
     private int idDonation;
     private int idUser;
     
+//    private int status;
     public UserDonation() {}
 
 	public UserDonation(String name, String text, int money, int idDonation, int idUser) {

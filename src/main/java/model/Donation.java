@@ -21,11 +21,13 @@ public class Donation {
     private String phoneNumber;
     private String startDate;
     private int status;
+    
 //    private List<UserDonation> userDonations;
     
-	public Donation(int id,String code, String created, String description, String endDate, int money, String name, String organizationName,
-			String phoneNumber, String startDate, int status, List<UserDonation> userDonations) {
-		super();
+	public Donation(int id, String code, String created, String description, String endDate, int money, String name, String organizationName,
+			String phoneNumber, String startDate, int status) {
+		this.id = id;
+		this.code = code;
 		this.created = created;
 		this.description = description;
 		this.endDate = endDate;

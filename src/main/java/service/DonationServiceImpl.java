@@ -16,7 +16,7 @@ public class DonationServiceImpl implements DonationService{
 	}
 
 	@Override
-	public Donation finById(int id) {
+	public Donation findById(int id) {
 		return donationDAO.findById(id);
 	}
 

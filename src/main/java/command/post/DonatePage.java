@@ -14,6 +14,7 @@ import service.DonationServiceImpl;
 import service.UserDonationService;
 import service.UserDonationServiceImpl;
 import share.BaseServlet;
+import share.Color;
 
 public class DonatePage extends BaseServlet implements CommandPost {
 	private static final long serialVersionUID = 1L;
@@ -24,12 +25,15 @@ public class DonatePage extends BaseServlet implements CommandPost {
 	@Override
 	public void excute(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
+		int idDonation=0, idUser, money;
+		String path = req.getContextPath();
 		try {
-			int idUser = Integer.parseInt(req.getParameter("idUser"));
-			int idDonation = Integer.parseInt(req.getParameter("idDonation"));
+			idUser = Integer.parseInt(req.getParameter("idUser"));
+			idDonation = Integer.parseInt(req.getParameter("idDonation"));
+			money = Integer.parseInt(req.getParameter("money"));
 			String name = req.getParameter("name").trim();
 			String text = req.getParameter("text").trim();
-			int money = Integer.parseInt(req.getParameter("money"));
+			path = req.getParameter("path").trim();
 			
 			UserDonation userDonation = new UserDonation(name, text, money, idDonation, idUser);
 			
@@ -42,7 +46,11 @@ public class DonatePage extends BaseServlet implements CommandPost {
 		}catch(Exception e) {
 			req.getSession().setAttribute("donate", false);
 		}
-		
-		resp.sendRedirect(req.getContextPath());
+
+		if(path.equals("detail")) {
+			resp.sendRedirect(path + "?id=" + idDonation);
+		}else {
+			resp.sendRedirect(path);			
+		}
 	}
 }

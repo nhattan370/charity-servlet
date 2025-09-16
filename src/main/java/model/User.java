@@ -8,18 +8,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class User {
+    private int id;
+    private String email;
+    private String password;
+    private String userName;
+    private Role role;
+    
 //    private String address;
 //    private String fullName;
 //    private String note;
 //    private String phoneNumber;
 //    private int status;
 //    private String created;
-    private int id;
-    private String email;
-    private String password;
-    private String userName;
-
-    private Role role;
 //    private List<UserDonation> userDonation;
     
     public User() {}

@@ -7,10 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
 import config.DBConnection;
 import model.Donation;
+import share.Color;
 
 public class DonationDAOImpl implements DonationDAO{
+	
+	private static final Logger logger = Logger.getLogger(DonationDAOImpl.class.getName());
 
 	@Override
 	public List<Donation> findAll() {
@@ -31,8 +36,7 @@ public class DonationDAOImpl implements DonationDAO{
 	                    rs.getString("organization_name"),
 	                    rs.getString("phone_number"),
 	                    rs.getString("start_date"),
-	                    rs.getInt("status"),
-	                    null
+	                    rs.getInt("status")
 						);
 				donations.add(donation);
 			}
@@ -63,8 +67,7 @@ public class DonationDAOImpl implements DonationDAO{
 							rs.getString("organization_name"),
 							rs.getString("phone_number"),
 							rs.getString("start_date"),
-							rs.getInt("status"),
-							null
+							rs.getInt("status")
 					);				
 				}
 			}
