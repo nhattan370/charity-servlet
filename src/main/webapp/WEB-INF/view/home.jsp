@@ -50,20 +50,20 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<c:if test="${not empty sessionScope.donation}">
-<div  class="toast" data-delay="1000" style="position:fixed; top: 100PX; left: 40PX;z-index: 2000;width: 300px">
-    <script>
-        swal({
-             title: "${donation ? 'Donate Successfully!' : 'Donate Failure!'}",
-             text: 'Redirecting...',
-             icon: "${donation ? 'success' : 'error'}",
-             timer: 3000,
-             buttons: true,
-             type: 'success'
-         })
-    </script>
-</div>
-<c:remove var="donation" scope="session"/>
+<c:if test="${not empty sessionScope.donate}">
+	<div  class="toast" data-delay="1000" style="position:fixed; top: 100PX; left: 40PX;z-index: 2000;width: 300px">
+	    <script>
+	        swal({
+	             title: "${donate ? 'Donate Successfully!' : 'Donate Failure!'}",
+	             text: 'Redirecting...',
+	             icon: "${donate ? 'success' : 'error'}",
+	             timer: 3000,
+	             buttons: true,
+	             type: "${donate ? 'success' : 'error'}"
+	         })
+	    </script>
+	</div>
+	<c:remove var="donation" scope="session"/>
 </c:if>
 
 <div class="site-wrap">
@@ -83,7 +83,6 @@
         <div class="container-fluid">
             <div class="row align-items-center">
               <div class="site-logo col-6"><a href="${pageContext.request.contextPath}">Website Quyên Góp</a></div>
-      
             </div>
           </div>
     </header>
@@ -111,10 +110,12 @@
         			<li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center "
         				style="cursor:pointer;">
         			<!--  
-        				onClick="window.location.href='${pageContext.request.contextPath}/detail'"        			
         			-->
         			
-                        <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                        <div 
+                        	class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4"
+        					onClick="window.location.href='${pageContext.request.contextPath}/detail?id=${donation.id}'"        			
+                        >
                             <div class="job-listing-position custom-width  mb-3 mb-sm-0" style="padding: 10px;width: 250px">
                                 <h2>${donation.name}</h2>
                                 <strong>
@@ -147,32 +148,28 @@
                                 <strong>${donation.phoneNumber}</strong><br>
                             </div>
                             <div class="job-listing-meta custom-width w-20" >
-                            <!--  
-                            -->
-                            
-                            <c:choose>
-                            	<c:when test="${donation.status==2}">
-	                            	<button style="margin-top: 20px;  width:113px; height:42px" 
-									   class="btn btn-primary py-2" 
-									   data-toggle="modal" 
-	  								   data-target="#exampleModal${donation.id}"
-									   >
-									   Quyên góp
-									</button>  
-                            	</c:when>
-                            	<c:otherwise>
-	                            	<button style="margin-top: 20px;opacity: 0.5; width:113px; height:42px" 
-									   class="btn btn-primary py-2" 
-									   disabled
-									>
-									<c:if test="${donation.status==1}">Mới khởi tạo</c:if>
-									<c:if test="${donation.status==3}">Tạm dừng</c:if>
-									<c:if test="${donation.status==4}">Kết thúc</c:if>
-									</button>  
-                            	</c:otherwise>
-                            </c:choose>
-								
-								   <!--
+	                            <c:choose>
+	                            	<c:when test="${donation.status==2}">
+		                            	<button style="margin-top: 20px;  width:113px; height:42px" 
+										   class="btn btn-primary py-2" 
+										   data-toggle="modal" 
+		  								   data-target="#exampleModal${donation.id}"
+										   >
+										   Quyên góp
+										</button>  
+	                            	</c:when>
+	                            	<c:otherwise>
+		                            	<button style="margin-top: 20px;opacity: 0.5; width:113px; height:42px" 
+										   class="btn btn-primary py-2" 
+										   disabled
+										>
+										<c:if test="${donation.status==1}">Mới khởi tạo</c:if>
+										<c:if test="${donation.status==3}">Tạm dừng</c:if>
+										<c:if test="${donation.status==4}">Kết thúc</c:if>
+										</button>  
+	                            	</c:otherwise>
+	                            </c:choose>
+								<!--
 								<button style="margin-top: 20px" 
 							     	class="btn btn-primary py-2" 
 							     	data-toggle="modal" 
@@ -180,13 +177,13 @@
 							    >
 								   Quyên góp
 								</button>
-								     -->
-                                <p style="margin-top: 20px;background-color: white !important;" class="btn py-2"><span style="color: white">Quyên góp</span></p>
+								-->
+	                            <p style="margin-top: 20px;background-color: white !important;" class="btn py-2">
+	                            	<span style="color: white">Quyên góp</span>
+	                            </p>
                             </div>
                         </div>
-                       
                     </li>
-                    
                     <!-- Modal -->
                        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="exampleModal${donation.id}">                        
                        <div class="modal-dialog" role="document">

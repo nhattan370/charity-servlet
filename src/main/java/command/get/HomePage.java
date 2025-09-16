@@ -1,10 +1,6 @@
 package command.get;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.CommandGet;
-import config.DBConnection;
 import model.Donation;
 import service.DonationService;
 import service.DonationServiceImpl;

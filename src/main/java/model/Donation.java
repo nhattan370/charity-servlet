@@ -11,8 +11,8 @@ import java.util.List;
 //@AllArgsConstructor
 public class Donation {
     private int id;
-//    private String code;
-//    private String created;
+    private String code;
+    private String created;
     private String description;
     private String endDate;
     private int money;
@@ -21,13 +21,12 @@ public class Donation {
     private String phoneNumber;
     private String startDate;
     private int status;
-    private List<UserDonation> userDonations;
+//    private List<UserDonation> userDonations;
     
-    
-    
-	public Donation(int id, String description, String endDate, int money, String name, String organizationName,
+	public Donation(int id,String code, String created, String description, String endDate, int money, String name, String organizationName,
 			String phoneNumber, String startDate, int status, List<UserDonation> userDonations) {
-		this.id = id;
+		super();
+		this.created = created;
 		this.description = description;
 		this.endDate = endDate;
 		this.money = money;
@@ -36,13 +35,24 @@ public class Donation {
 		this.phoneNumber = phoneNumber;
 		this.startDate = startDate;
 		this.status = status;
-		this.userDonations = userDonations;
 	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getCreated() {
+		return created;
+	}
+	public void setCreated(String created) {
+		this.created = created;
 	}
 	public String getDescription() {
 		return description;
@@ -92,11 +102,11 @@ public class Donation {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public List<UserDonation> getUserDonations() {
-		return userDonations;
-	}
-	public void setUserDonations(List<UserDonation> userDonations) {
-		this.userDonations = userDonations;
-	}
+//	public List<UserDonation> getUserDonations() {
+//		return userDonations;
+//	}
+//	public void setUserDonations(List<UserDonation> userDonations) {
+//		this.userDonations = userDonations;
+//	}
     
 }

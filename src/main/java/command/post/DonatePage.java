@@ -14,7 +14,6 @@ import service.DonationServiceImpl;
 import service.UserDonationService;
 import service.UserDonationServiceImpl;
 import share.BaseServlet;
-import share.Color;
 
 public class DonatePage extends BaseServlet implements CommandPost {
 	private static final long serialVersionUID = 1L;
@@ -39,12 +38,11 @@ public class DonatePage extends BaseServlet implements CommandPost {
 			//Update money in specific Donation
 			donationService.updateMoney(money, idDonation);
 			//Show toast when a donate successes	
-			req.getSession().setAttribute("donation", true);			
+			req.getSession().setAttribute("donate", true);			
 		}catch(Exception e) {
-			req.getSession().setAttribute("donation", false);
+			req.getSession().setAttribute("donate", false);
 		}
 		
 		resp.sendRedirect(req.getContextPath());
-		
 	}
 }

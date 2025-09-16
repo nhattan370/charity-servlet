@@ -22,6 +22,8 @@ public class DonationDAOImpl implements DonationDAO{
 			while(rs.next()) {
 				Donation donation = new Donation(
 	                    rs.getInt("id"),
+						rs.getString("code"),
+						rs.getString("created"),
 	                    rs.getString("description"),
 	                    rs.getString("end_date"),
 	                    rs.getInt("money"),
@@ -52,6 +54,8 @@ public class DonationDAOImpl implements DonationDAO{
 				if(rs.next()) {
 					donation = new Donation(
 							rs.getInt("id"),
+							rs.getString("code"),
+							rs.getString("created"),
 							rs.getString("description"),
 							rs.getString("end_date"),
 							rs.getInt("money"),
