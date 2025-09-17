@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.CommandPost;
+import model.Donation;
+import model.User;
 import model.UserDonation;
 import service.DonationService;
 import service.DonationServiceImpl;
@@ -35,7 +37,7 @@ public class DonatePage extends BaseServlet implements CommandPost {
 			String text = req.getParameter("text").trim();
 			path = req.getParameter("path").trim();
 			
-			UserDonation userDonation = new UserDonation(name, text, money, idDonation, idUser);
+			UserDonation userDonation = new UserDonation(name, text, money, new Donation(idDonation), new User(idUser));
 			
 			//Save data into a table which connects User and Donation
 			userDonationService.save(userDonation);
