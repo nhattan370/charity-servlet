@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 //import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.List;
 public class Donation {
     private int id;
     private String code;
-    private String created;
+    private LocalDateTime created;
     private String description;
     private String endDate;
     private int money;
@@ -24,7 +25,13 @@ public class Donation {
     
 //    private List<UserDonation> userDonations;
     
-	public Donation(int id, String code, String created, String description, String endDate, int money, String name, String organizationName,
+	public Donation() {}
+    
+	public Donation(int id) {
+		this.id = id;
+	}
+    
+	public Donation(int id, String code, LocalDateTime created, String description, String endDate, int money, String name, String organizationName,
 			String phoneNumber, String startDate, int status) {
 		this.id = id;
 		this.code = code;
@@ -38,6 +45,7 @@ public class Donation {
 		this.startDate = startDate;
 		this.status = status;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -50,10 +58,10 @@ public class Donation {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
-	public void setCreated(String created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 	public String getDescription() {

@@ -8,4 +8,5 @@ public interface UserDAO {
 	User save(User user);
 	List<User> findAll();
 	User findById(int id);
+	List<User> findByDonationId(int idDonation);
 }

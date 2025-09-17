@@ -28,7 +28,7 @@ public class DonationDAOImpl implements DonationDAO{
 				Donation donation = new Donation(
 	                    rs.getInt("id"),
 						rs.getString("code"),
-						rs.getString("created"),
+						rs.getTimestamp("created").toLocalDateTime(),
 	                    rs.getString("description"),
 	                    rs.getString("end_date"),
 	                    rs.getInt("money"),
@@ -59,7 +59,7 @@ public class DonationDAOImpl implements DonationDAO{
 					donation = new Donation(
 							rs.getInt("id"),
 							rs.getString("code"),
-							rs.getString("created"),
+							rs.getTimestamp("created").toLocalDateTime(),
 							rs.getString("description"),
 							rs.getString("end_date"),
 							rs.getInt("money"),

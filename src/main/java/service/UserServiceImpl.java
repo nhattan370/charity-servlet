@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
+	@Override
+	public List<User> findByDonationId(int donationId) {
+		return userDAO.findByDonationId(donationId);
+	}
+
 }

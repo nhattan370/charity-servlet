@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,22 +11,33 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDonation {
     private int id;
-    private String created;
+    private LocalDateTime created;
     private String name;
     private String text;
     private int money;
-    private int idDonation;
-    private int idUser;
+    private Donation donation;
+    private User user;
     
 //    private int status;
     public UserDonation() {}
+    
+	public UserDonation(String name, String text, int money, Donation donation, User user) {
 
-	public UserDonation(String name, String text, int money, int idDonation, int idUser) {
 		this.name = name;
 		this.text = text;
 		this.money = money;
-		this.idDonation = idDonation;
-		this.idUser = idUser;
+		this.donation = donation;
+		this.user = user;
+	}
+
+	public UserDonation(int id, LocalDateTime created ,String name, String text, int money, Donation donation, User user) {
+		this.id = id;
+		this.created = created;
+		this.name = name;
+		this.text = text;
+		this.money = money;
+		this.donation = donation;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -35,11 +48,11 @@ public class UserDonation {
 		this.id = id;
 	}
 
-	public String getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(String created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
@@ -67,20 +80,19 @@ public class UserDonation {
 		this.money = money;
 	}
 
-	public int getIdDonation() {
-		return idDonation;
+	public Donation getDonation() {
+		return donation;
 	}
 
-	public void setIdDonation(int idDonation) {
-		this.idDonation = idDonation;
+	public void setDonation(Donation donation) {
+		this.donation = donation;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
 }

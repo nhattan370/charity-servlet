@@ -1,10 +1,21 @@
 package dao;
 
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+import config.DBConnection;
+import model.Role;
 import model.User;
 
 public class UserDAOImpl implements UserDAO{
+	
+	private final Logger logger = Logger.getLogger(UserDAOImpl.class.getName());
 
 	@Override
 	public User save(User user) {
@@ -14,7 +25,7 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -22,6 +33,41 @@ public class UserDAOImpl implements UserDAO{
 	public User findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<User> findByDonationId(int idDonation) {
+//		String query = "SELECT u.* FROM user u"
+//					 + " JOIN user_donation ud ON u.id=ud.user_id"
+//					 + " WHERE ud.donation_id = ?";
+		List<User> users = new ArrayList<User>();
+//		try(Connection con = DBConnection.getConnection();
+//			PreparedStatement ps = con.prepareStatement(query)){
+//			
+//			ps.setInt(1, idDonation);
+//			
+//			try(ResultSet rs = ps.executeQuery()){
+//				while(rs.next()) {
+//					Role role = new Role(rs.getInt("r.id"), rs.getString("role_name"));
+//					
+//					User user = new User(rs.getInt("id"), 
+//							rs.getString("email"),
+//							rs.getString("password"), 
+//							rs.getString("user_name"), 
+//							role, 
+//							rs.getString("address"), 
+//							rs.getString("full_name"), 
+//							rs.getString("phone_number"), 
+//							rs.getString("note"), 
+//							rs.getTimestamp("created").toLocalDateTime(), 
+//							rs.getInt("status"));
+//					users.add(user);
+//				}
+//			}
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}
+		return users;
 	}
 
 }
