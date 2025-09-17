@@ -1,5 +1,6 @@
 package dao;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import config.DBConnection;
 import model.Donation;
@@ -15,6 +17,7 @@ import model.User;
 import model.UserDonation;
 
 public class UserDonationDAOImpl implements UserDonationDAO{
+	private final Logger logger = Logger.getLogger(UserDonationDAOImpl.class.getName());
 	@Override
 	public UserDonation save(UserDonation ud) {
 		String query = "INSERT INTO user_donation (money, name, text, donation_id, user_id)"
@@ -71,11 +74,11 @@ public class UserDonationDAOImpl implements UserDonationDAO{
 				+ " ud.status AS user_donation_status,"
 				+ " ud.text AS user_donation_text"
 
-				+ " FROM user u"
+				+ " FROM donation d"
+				+ " JOIN user_donation ud ON d.id = ud.donation_id"
+				+ " JOIN user u ON u.id = ud.user_id"
 				+ " JOIN role r ON u.role_id = r.id"
-				+ " JOIN user_donation ud ON u.id = ud.user_id"
-				+ " JOIN donation d ON d.id = ud.donation_id"
-				+ " WHERE ud.donation_id = 2;";
+				+ " WHERE d.id = ?";
 		List<UserDonation> userDonations = new ArrayList<>();
 		try(Connection con = DBConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(query)){
@@ -123,7 +126,6 @@ public class UserDonationDAOImpl implements UserDonationDAO{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return userDonations;
 	}
 }

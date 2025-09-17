@@ -7,5 +7,5 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface CommandPost{
-	void excute(HttpServletRequest req, HttpServletResponse reqs) throws IOException, ServletException;
+	void execute(HttpServletRequest req, HttpServletResponse reqs) throws IOException, ServletException;
 }

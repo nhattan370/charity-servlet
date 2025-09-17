@@ -18,7 +18,7 @@ public class HomePage extends BaseServlet implements CommandGet {
 	private final DonationService donationService = new DonationServiceImpl();
 
 	@Override
-	public void excute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Donation> donations = donationService.findAll();
 		req.setAttribute("donations", donations);
 		view("home", req, resp);

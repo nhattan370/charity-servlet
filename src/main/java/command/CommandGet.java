@@ -7,5 +7,5 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface CommandGet { 
-	void excute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
+	void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 }

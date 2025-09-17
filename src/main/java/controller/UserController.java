@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.HashMap;
@@ -17,7 +18,6 @@ import command.get.HomePage;
 import command.get.TestPage;
 import command.post.DonatePage;
 import share.BaseServlet;
-import share.Color;
 
 @WebServlet({"/home","/detail","/test","", "/donate"})
 public class UserController extends BaseServlet{
@@ -41,7 +41,7 @@ public class UserController extends BaseServlet{
 		String path = req.getServletPath();
 		CommandGet cmd = routeGets.get(path);
 		if(cmd!=null) {
-			cmd.excute(req, resp);
+			cmd.execute(req, resp);
 		}else {
 			logger.info(Color.GREEN+"Another path: "+ path + Color.GREEN);
 		}
@@ -51,7 +51,7 @@ public class UserController extends BaseServlet{
 		String path = req.getServletPath();
 		CommandPost cmd = routePosts.get(path);
 		if(cmd!=null) {
-			cmd.excute(req, resp);
+			cmd.execute(req, resp);
 		}else {
 			logger.info(Color.GREEN+"Another path: "+ path + Color.GREEN);
 		}

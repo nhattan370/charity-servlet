@@ -16,7 +16,6 @@ import service.DonationServiceImpl;
 import service.UserDonationService;
 import service.UserDonationServiceImpl;
 import share.BaseServlet;
-import share.Color;
 
 public class DonatePage extends BaseServlet implements CommandPost {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +24,7 @@ public class DonatePage extends BaseServlet implements CommandPost {
 	private static final Logger logger = Logger.getLogger(DonatePage.class.getName());
 
 	@Override
-	public void excute(HttpServletRequest req, HttpServletResponse resp)
+	public void execute(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
 		int idDonation=0, idUser, money;
 		String path = req.getContextPath();

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import config.DBConnection;
 import model.Donation;
-import share.Color;
+
 
 public class DonationDAOImpl implements DonationDAO{
 	
