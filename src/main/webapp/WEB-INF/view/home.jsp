@@ -113,40 +113,42 @@
         			-->
         			
                         <div 
-                        	class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4"
-        					onClick="window.location.href='${pageContext.request.contextPath}/detail?id=${donation.id}'"        			
-                        >
-                            <div class="job-listing-position custom-width  mb-3 mb-sm-0" style="padding: 10px;width: 250px">
-                                <h2>${donation.name}</h2>
-                                <strong>
-									<c:choose>
-									    <c:when test="${donation.status==1}">
-									        <span style="color:#3498db;">Mới tạo</span>
-									    </c:when>
-									    <c:when test="${donation.status==2}">
-									        <span style="color:#2ecc71;">Đang hoạt động</span>
-									    </c:when>
-									    <c:when test="${donation.status==3}">
-									        <span style="color:#e74c3c;">Kết thúc</span>
-									    </c:when>
-									    <c:when test="${donation.status==4}">
-									        <span style="color:#f39c12;">Tạm dừng</span>
-									    </c:when>
-									</c:choose>
-                                </strong>
+                        	class="job-listing-about d-sm-flex custom-width w-100 mx-4">
+                        	<div class="d-sm-flex justify-content-between flex-fill"
+                        		onClick = "window.location.href = 'detail?id=${donation.id}'">
+	                            <div class="job-listing-position custom-width  mb-3 mb-sm-0" style="padding: 10px;width: 250px">
+	                                <h2>${donation.name}</h2>
+	                                <strong>
+										<c:choose>
+										    <c:when test="${donation.status==1}">
+										        <span style="color:#3498db;">Mới tạo</span>
+										    </c:when>
+										    <c:when test="${donation.status==2}">
+										        <span style="color:#2ecc71;">Đang hoạt động</span>
+										    </c:when>
+										    <c:when test="${donation.status==3}">
+										        <span style="color:#e74c3c;">Kết thúc</span>
+										    </c:when>
+										    <c:when test="${donation.status==4}">
+										        <span style="color:#f39c12;">Tạm dừng</span>
+										    </c:when>
+										</c:choose>
+	                                </strong>
+	                            </div>
+	                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-10" style="padding: 10px;">
+	                                Ngày bắt đầu<br>
+	                                <strong>${donation.startDate}</strong><br>
+	                            </div>
+	                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-10" style="padding: 10px;">
+	                                Ngày kết thúc<br>
+	                                <strong>${donation.endDate}</strong><br>
+	                            </div>
+	                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25" style="padding: 10px;">
+	                                <span class="icon-room"></span> <span>${donation.organizationName}</span><br>
+	                                <strong>${donation.phoneNumber}</strong><br>
+	                            </div>
                             </div>
-                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-10" style="padding: 10px;">
-                                Ngày bắt đầu<br>
-                                <strong>${donation.startDate}</strong><br>
-                            </div>
-                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-10" style="padding: 10px;">
-                                Ngày kết thúc<br>
-                                <strong>${donation.endDate}</strong><br>
-                            </div>
-                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25" style="padding: 10px;">
-                                <span class="icon-room"></span> <span>${donation.organizationName}</span><br>
-                                <strong>${donation.phoneNumber}</strong><br>
-                            </div>
+                            <!-- Button -->
                             <div class="job-listing-meta custom-width w-20" >
 	                            <c:choose>
 	                            	<c:when test="${donation.status==2}">
@@ -157,15 +159,6 @@
 										   >
 										   Quyên góp
 										</button>  
-									<!--
-									<button style="margin-top: 20px" 
-								     	class="btn btn-primary py-2" 
-								     	data-toggle="modal" 
-									   onclick="event.stopPropagation(); $('#exampleModal${donation.id}').modal('show');"								   
-								    >
-									   Quyên góp
-									</button>
-									-->
 	                            	</c:when>
 	                            	<c:otherwise>
 		                            	<button style="margin-top: 20px;opacity: 0.5; width:113px; height:42px" 
@@ -183,6 +176,7 @@
 	                            	<span style="color: white">Quyên góp</span>
 	                            </p>
                             </div>
+                       		<!-- Button -->
                         </div>
                     </li>
                     <!-- Modal -->
@@ -238,22 +232,25 @@
             </ul>
 
 			<!-- Pagination -->
-            <div class="row pagination-wrap">
-                <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-
-                </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <div class="custom-pagination ml-auto">
-                        <a class="prev">Prev</a>
-                        <div class="d-inline-block">
-                        </div>
-
-                        <a class="next">Next</a>
-                    </div>
-                </div>
-            </div>
+            <nav aria-label="Page navigation example ">
+			  <ul class="pagination justify-content-end">
+			    <li class="page-item">
+			      <a class="page-link text-dark" href="#" tabindex="-1">Previous</a>
+			    </li>
+			    <li class="page-item  active"><a class="page-link" href="?page=1">1</a></li>
+			    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+			    <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+			    <li class="page-item">
+			      <a class="page-link text-dark" href="#">Next</a>
+			    </li>
+			  </ul>
+			</nav>
 			<!-- Pagination -->
+<!-- 
+	Xử lí nút next sẽ chuyển trang tiếp theo, nút prev sẽ lùi đi 1 trang
+	Xử lí nút next sẽ không thể chuyển trang tiếp theo nếu ở trang cuối, nút prev sẽ không thể lùi nếu ở trang đầu
 
+ -->
         </div>
     </section>
 </div>

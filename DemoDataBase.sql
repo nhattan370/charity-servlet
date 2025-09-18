@@ -16,7 +16,7 @@ CREATE TABLE user (
     phone_number VARCHAR(255),
     status TINYINT DEFAULT 1,
     user_name VARCHAR(255),
-    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     role_id INT(11),
     CONSTRAINT fk_user_role FOREIGN KEY (role_id) REFERENCES role(id)
 );
@@ -24,7 +24,7 @@ CREATE TABLE user (
 CREATE TABLE donation (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     code VARCHAR(255),
-    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description VARCHAR(255),
     end_date VARCHAR(255),
     money INT(11),
@@ -37,7 +37,7 @@ CREATE TABLE donation (
 
 CREATE TABLE user_donation (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     money INT(11) NOT NULL,
     name VARCHAR(255),                 -- tên người quyên góp
     status TINYINT DEFAULT 1,          -- 1 = active, 0 = pending, ...
@@ -94,32 +94,34 @@ INSERT INTO donation (code, start_date, name, end_date, money, description, orga
 -- Insert into user_donation (17 records)
 INSERT INTO user_donation (money, name, status, text, donation_id, user_id) VALUES
 (500,'Ủng hộ 1',1,'Ủng hộ xây cầu nông thôn',3,1),
-(600,'Ủng hộ 2',1,'Ủng hộ đồng bào miền Trung',1,2),
-(700,'Ủng hộ 3',1,'Ủng hộ bệnh nhi ung thư',4,5), 
-(800,'Ủng hộ 4',1,'Ủng hộ học bổng học sinh nghèo',2,3),  
-(900,'Ủng hộ 5',1,'Ủng hộ chiến sĩ Trường Sa',11,6),
-(1000,'Ủng hộ 6',1,'Ủng hộ nước sạch miền núi',18,4),
-(1100,'Ủng hộ 7',1,'Ủng hộ trẻ em mồ côi',16,7),
-(1200,'Ủng hộ 8',1,'Ủng hộ phẫu thuật nụ cười',10,2),
-(1300,'Ủng hộ 9',1,'Ủng hộ cứu trợ lũ quét Tây Bắc',14,8),
-(1400,'Ủng hộ 10',1,'Ủng hộ áo ấm mùa đông',17,9),
-(1500,'Ủng hộ 11',1,'Ủng hộ hiến máu nhân đạo',8,1),
-(1600,'Ủng hộ 12',1,'Ủng hộ bệnh nhân nghèo',15,3),
-(1700,'Ủng hộ 13',1,'Ủng hộ người vô gia cư',6,5),
-(1800,'Ủng hộ 14',1,'Ủng hộ chống dịch Covid-19',3,10),
-(1900,'Ủng hộ 15',1,'Ủng hộ cứu trợ hạn mặn',9,4),
-(2000,'Ủng hộ 16',1,'Ủng hộ bảo vệ động vật hoang dã',19,7),
-(2100,'Ủng hộ 17',1,'Ủng hộ tiếp sức mùa thi',7,6);
+-- (600,'Ủng hộ 2',1,'Ủng hộ đồng bào miền Trung',1,2),
+-- (700,'Ủng hộ 3',1,'Ủng hộ bệnh nhi ung thư',4,5), 
+-- (800,'Ủng hộ 4',1,'Ủng hộ học bổng học sinh nghèo',2,3),  
+-- (900,'Ủng hộ 5',1,'Ủng hộ chiến sĩ Trường Sa',11,6),
+-- (1000,'Ủng hộ 6',1,'Ủng hộ nước sạch miền núi',18,4),
+-- (1100,'Ủng hộ 7',1,'Ủng hộ trẻ em mồ côi',16,7),
+-- (1200,'Ủng hộ 8',1,'Ủng hộ phẫu thuật nụ cười',10,2),
+-- (1300,'Ủng hộ 9',1,'Ủng hộ cứu trợ lũ quét Tây Bắc',14,8),
+-- (1400,'Ủng hộ 10',1,'Ủng hộ áo ấm mùa đông',17,9),
+-- (1500,'Ủng hộ 11',1,'Ủng hộ hiến máu nhân đạo',8,1),
+-- (1600,'Ủng hộ 12',1,'Ủng hộ bệnh nhân nghèo',15,3),
+-- (1700,'Ủng hộ 13',1,'Ủng hộ người vô gia cư',6,5),
+-- (1800,'Ủng hộ 14',1,'Ủng hộ chống dịch Covid-19',3,10), 
+-- (1900,'Ủng hộ 15',1,'Ủng hộ cứu trợ hạn mặn',9,4),
+-- (2000,'Ủng hộ 16',1,'Ủng hộ bảo vệ động vật hoang dã',19,7),
+(2100,'Ủng hộ 17',1,'Ủng hộ tiếp sức mùa thi',7,6); 
 
 -- SELECT * FROM donation;
 -- SELECT * FROM user_donation;  
 
-SELECT * 
-FROM user u 
-JOIN role r ON u.role_id = r.id 
-JOIN user_donation ud ON u.id=ud.user_id 
-JOIN donation d ON d.id = ud.donation_id
-WHERE ud.donation_id = 2;
+-- SELECT * 
+-- FROM user u 
+-- JOIN role r ON u.role_id = r.id 
+-- JOIN user_donation ud ON u.id=ud.user_id 
+-- JOIN donation d ON d.id = ud.donation_id
+-- WHERE ud.donation_id = 2;
+
+
 
 
 

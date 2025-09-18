@@ -133,7 +133,7 @@
 
           <div class="pt-5">
             <h4 class="mb-5" > Danh sách quyên góp</h4>
-            <h3 class="mb-5">${userDonations.size()}</h3>
+            <h3 class="mb-5">${userDonations.size()} Donation</h3>
             
             <ul class="comment-list">
 	            <c:forEach var="userDonation" items="${userDonations}">
@@ -257,9 +257,9 @@
 
   <!--  
   <footer th:replace="public/fragments :: footer" class="site-footer">  
-  -->
 
   </footer>
+  -->
 
 </div>
 
