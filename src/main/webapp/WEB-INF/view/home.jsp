@@ -111,13 +111,12 @@
         				style="cursor:pointer;">
         			<!--  
         			-->
-        			
                         <div 
                         	class="job-listing-about d-sm-flex custom-width w-100 mx-4">
                         	<div class="d-sm-flex justify-content-between flex-fill"
                         		onClick = "window.location.href = 'detail?id=${donation.id}'">
 	                            <div class="job-listing-position custom-width  mb-3 mb-sm-0" style="padding: 10px;width: 250px">
-	                                <h2>${donation.name}</h2>
+	                                <h2>${donation.id} + ${donation.name}</h2>
 	                                <strong>
 										<c:choose>
 										    <c:when test="${donation.status==1}">
@@ -234,23 +233,18 @@
 			<!-- Pagination -->
             <nav aria-label="Page navigation example ">
 			  <ul class="pagination justify-content-end">
-			    <li class="page-item">
-			      <a class="page-link text-dark" href="#" tabindex="-1">Previous</a>
+			    <li class="page-item ${currentPage==1 ? 'disabled' : ''}">
+			      <a class="page-link text-dark" href="?pageNo=${currentPage-1}" tabindex="-1">Previous</a>
 			    </li>
-			    <li class="page-item  active"><a class="page-link" href="?page=1">1</a></li>
-			    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-			    <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link text-dark" href="#">Next</a>
+			    <c:forEach var="i" begin="1" end="${totalPage}">
+			    	<li class="page-item ${currentPage==i ? 'active' : ''}"><a class="page-link" href="?pageNo=${i}">${i}</a></li>
+			    </c:forEach>
+			    <li class="page-item ${currentPage==totalPage ? 'disabled' : ''}">
+			      <a class="page-link text-dark" href="?pageNo=${currentPage+1}">Next</a>
 			    </li>
 			  </ul>
 			</nav>
 			<!-- Pagination -->
-<!-- 
-	Xử lí nút next sẽ chuyển trang tiếp theo, nút prev sẽ lùi đi 1 trang
-	Xử lí nút next sẽ không thể chuyển trang tiếp theo nếu ở trang cuối, nút prev sẽ không thể lùi nếu ở trang đầu
-
- -->
         </div>
     </section>
 </div>

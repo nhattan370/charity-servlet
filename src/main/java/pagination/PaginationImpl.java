@@ -1,6 +1,5 @@
 package pagination;
 
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,39 +15,24 @@ public class PaginationImpl<T> implements Pagination<T>{
 	private final Logger logger = Logger.getLogger(PaginationImpl.class.getName());
 	
 	private final String tableName;
+	private final int PAGE_SIZE; 
 	private final RowMapper<T> mapper;
-
-	public PaginationImpl(String tableName, RowMapper<T> mapper) {
+	
+	public PaginationImpl(String tableName, int pageSize, RowMapper<T> mapper) {
 		this.tableName = tableName;
+		this.PAGE_SIZE = pageSize;
 		this.mapper = mapper;
 	}
 
 	@Override
-	public int getTotalRecord() {
-		logger.info(Color.GRAY + "PaginationImpl" + tableName);
-		String query = "SELECT COUNT(*) AS count_ele FROM " + tableName;
-		int totalRecord = 0;
-		try(Connection con = DBConnection.getConnection();
-			PreparedStatement ps = con.prepareStatement(query)){
-			
-			try(ResultSet rs = ps.executeQuery()){
-				totalRecord = rs.next() ? rs.getInt("count_ele") : totalRecord;
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return totalRecord;
-	}
-
-	@Override
-	public List<T> getPageData(int pageSize, int start) {
+	public List<T> getPageData(int pageNo) {
+		int start = (pageNo-1)*PAGE_SIZE;
 		String query = "SELECT * FROM " + tableName + " LIMIT ? OFFSET ?";
 		List<T> list = new ArrayList<>();
 		try(Connection con = DBConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(query)){
-			ps.setInt(1, pageSize);
-			ps.setInt(2, start);
+		        ps.setInt(1, PAGE_SIZE);
+		        ps.setInt(2, start);
 			try(ResultSet rs = ps.executeQuery()){
 				while(rs.next()) {
 					list.add(mapper.mapRow(rs));
@@ -58,5 +42,22 @@ public class PaginationImpl<T> implements Pagination<T>{
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	@Override
+	public int getTotalPage() {
+		String query = "SELECT CEIL(COUNT(*)/?) AS total_page FROM " + tableName;
+		int totalPage = 0;
+		try(Connection con = DBConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(query)){
+			ps.setInt(1, PAGE_SIZE);
+			try(ResultSet rs = ps.executeQuery()){
+				totalPage = rs.next() ? rs.getInt("total_page") : totalPage;
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return totalPage;
 	}
 }

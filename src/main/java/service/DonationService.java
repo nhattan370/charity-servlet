@@ -9,4 +9,6 @@ public interface DonationService {
 	Donation findById(int id);
 	Donation save(Donation d);
 	void updateMoney(int id, int amount);
+	List<Donation> handlePagination(int pageNo);
+	int getTotalPage();
 }
