@@ -10,6 +10,7 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="Free-Template.co" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/user/assets/images/apps.png">
         
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/css/custom-bs.css">
@@ -19,7 +20,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/fonts/line-icons/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/css/owl.carousel.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/css/animate.min.css">
-      
         <!-- MAIN CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/css/style.css">
         
@@ -50,20 +50,21 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<c:if test="${not empty sessionScope.donate}">
+<c:if test="${not empty sessionScope.message}">
 	<div  class="toast" data-delay="1000" style="position:fixed; top: 100PX; left: 40PX;z-index: 2000;width: 300px">
 	    <script>
 	        swal({
-	             title: "${donate ? 'Donate Successfully!' : 'Donate Failure!'}",
+	             title: "${sessionScope.message}",
 	             text: 'Redirecting...',
-	             icon: "${donate ? 'success' : 'error'}",
+	             icon: "${sessionScope.status ? 'success' : 'error'}",
 	             timer: 3000,
 	             buttons: true,
-	             type: "${donate ? 'success' : 'error'}"
+	             type: "${sessionScope.status ? 'success' : 'error'}"
 	         })
 	    </script>
 	</div>
-	<c:remove var="donate" scope="session"/>
+	<c:remove var="message" scope="session"/>
+	<c:remove var="status" scope="session"/>
 </c:if>
 
 <div class="site-wrap">
@@ -77,6 +78,36 @@
         <div class="site-mobile-menu-body"></div>
     </div> <!-- .site-mobile-menu -->
 
+  <header class="site-navbar mt-3">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="site-logo col-6"><a href="/">Website Quyên Góp</a></div>
+
+        <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+          <div class="ml-auto">
+			<c:if test="${sessionScope.user==null}">
+	            <a href="login-page" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+			</c:if>
+            <c:if test="${sessionScope.user!=null}">
+	            <div class="dropdown">
+				  <a href="#" class="btn btn-primary d-flex align-items-center justify-content-between dropdown-toggle" 
+				     id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+				    <span>${sessionScope.user.username}</span>
+				    <i class="fa-solid fa-sort-down ms-2"></i>
+				  </a>
+				  <ul class="dropdown-menu" aria-labelledby="userDropdown">
+				    <li><a class="dropdown-item" href="logout">Logout</a></li>
+				  </ul>
+				</div>
+            </c:if>
+
+          </div>
+          <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+        </div>
+
+      </div>
+    </div>
+  </header>
 
     <!-- NAVBAR -->
     <header class="site-navbar mt-3">
@@ -188,7 +219,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>                                	
                                 </div>
-                                <form method="post" action="donate">
+                                <form method="post" action="auth/donate">
                                     <div class="modal-body">
                                         <div class="row">
 
@@ -201,7 +232,7 @@
                                                        class="col-form-label">Số tiền quyên góp:</label>
                                                 <input type="number" class="form-control" placeholder=""
                                                        id="addmoney" name="money" required>
-                                                <input type="hidden" class="form-control" value="1"
+                                                <input type="hidden" class="form-control" value="${sessionScope.user.userId}"
                                                        id="addname" name="idUser" >
                                                 <input type="hidden" class="form-control" value="${donation.id}"
                                                        id="addname" name="idDonation" required>

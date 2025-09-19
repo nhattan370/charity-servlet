@@ -11,6 +11,7 @@
     <meta name="keywords" content="" />
     <meta name="author" content="Free-Template.co" />
     <link rel="shortcut icon" href="ftco-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/css/custom-bs.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/user/assets/css/jquery.fancybox.min.css">
@@ -85,26 +86,29 @@
       <div class="row align-items-center">
         <div class="site-logo col-6"><a href="/">Website Quyên Góp</a></div>
 
-        <nav class="mx-auto site-navigation">
-          <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-            <li th:if="${session.user}" class="d-lg-none"><a href="post-job.html"><span class="mr-2" th:text="${session.user.fullName}"></span> </a></li>
-            <li class="d-lg-none" th:if="${session.user}"><a href="/user/logout" >Đăng xuất</a></li>
-            <li class="d-lg-none" th:unless="${session.user}"><a href="/user/login">Đăng nhập</a></li>
-          </ul>
-        </nav>
-
         <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
           <div class="ml-auto">
-
-            <a href="/user/logout" th:if="${session.user}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">Log Out</a>
-            <a href="/user/login" th:unless="${session.user}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+			<c:if test="${sessionScope.user==null}">
+	            <a href="login-page" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+			</c:if>
+            <c:if test="${sessionScope.user!=null}">
+	            <div class="dropdown">
+				  <a href="#" class="btn btn-primary d-flex align-items-center justify-content-between dropdown-toggle" 
+				     id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+				    <span>${sessionScope.user.username}</span>
+				    <i class="fa-solid fa-sort-down ms-2"></i>
+				  </a>
+				  <ul class="dropdown-menu" aria-labelledby="userDropdown">
+				    <li><a class="dropdown-item" href="logout">Logout</a></li>
+				  </ul>
+				</div>
+            </c:if>
           </div>
           <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
         </div>
 
       </div>
     </div>
-  </header>
   </header>
 
   <!-- HOME -->
@@ -215,7 +219,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="post" action="donate">
+          <form method="post" action="auth/donate">
             <div class="modal-body">
               <div class="row">
                 <div class="col-12">

@@ -9,4 +9,5 @@ public interface UserDAO {
 	List<User> findAll();
 	User findById(int id);
 	List<User> findByDonationId(int idDonation);
+	User findByUsernamePassword(String email, String password);
 }

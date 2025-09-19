@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.CommandPost;
+import enums.Message;
 import model.Donation;
 import model.User;
 import model.UserDonation;
@@ -16,6 +17,7 @@ import service.DonationServiceImpl;
 import service.UserDonationService;
 import service.UserDonationServiceImpl;
 import share.BaseServlet;
+import share.Color;
 
 public class DonatePage extends BaseServlet implements CommandPost {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,7 @@ public class DonatePage extends BaseServlet implements CommandPost {
 			throws IOException, ServletException {
 		int idDonation=0, idUser, money;
 		String path = req.getContextPath();
+		logger.info(Color.WHITE + "OUT" + path + Color.RESET);
 		try {
 			idUser = Integer.parseInt(req.getParameter("idUser"));
 			idDonation = Integer.parseInt(req.getParameter("idDonation"));
@@ -43,15 +46,17 @@ public class DonatePage extends BaseServlet implements CommandPost {
 			//Update money in specific Donation
 			donationService.updateMoney(money, idDonation);
 			//Show toast when a donate successes	
-			req.getSession().setAttribute("donate", true);			
+			req.getSession().setAttribute(Message.MESSAGE.getKey(), "Donate Successfully!");	
+			req.getSession().setAttribute(Message.STATUS.getKey(), true);	
 		}catch(Exception e) {
-			req.getSession().setAttribute("donate", false);
+			req.getSession().setAttribute(Message.MESSAGE.getKey(), "Donate Failure!");
+			req.getSession().setAttribute(Message.STATUS.getKey(), false);	
 		}
 
 		if(path.equals("detail")) {
-			resp.sendRedirect(path + "?id=" + idDonation);
+			resp.sendRedirect(req.getContextPath() + "/" + path + "?id=" + idDonation);
 		}else {
-			resp.sendRedirect(path);			
+			resp.sendRedirect(req.getContextPath() + "/" + path);	
 		}
 	}
 }

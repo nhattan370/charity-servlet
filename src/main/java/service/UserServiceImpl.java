@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService{
 		return userDAO.findByDonationId(donationId);
 	}
 
+	@Override
+	public User authenticated(String email, String password) {
+		return userDAO.findByUsernamePassword(email, password);
+	}
+
 }

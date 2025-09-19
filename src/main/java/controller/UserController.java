@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.HashMap;
@@ -15,11 +14,15 @@ import command.CommandGet;
 import command.CommandPost;
 import command.get.DetailPage;
 import command.get.HomePage;
+import command.get.LoginPage;
 import command.get.TestPage;
 import command.post.DonatePage;
+import command.post.Authenticated;
+import command.post.Logout;
 import share.BaseServlet;
+import share.Color;
 
-@WebServlet({"/home","/detail","/test","", "/donate"})
+@WebServlet({"/home","/detail","/test","", "/auth/donate","/login", "/logout", "/login-page"})
 public class UserController extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(UserController.class.getName());
@@ -28,11 +31,14 @@ public class UserController extends BaseServlet{
 	
 	@Override
 	public void init() throws ServletException {
-		routeGets.put("/home", new HomePage());
 		routeGets.put("", new HomePage());
+		routeGets.put("/home", new HomePage());
 		routeGets.put("/detail", new DetailPage());
 		routeGets.put("/test", new TestPage());
-		routePosts.put("/donate", new DonatePage());
+		routeGets.put("/login-page", new LoginPage());
+		routeGets.put("/logout", new Logout());
+		routePosts.put("/auth/donate", new DonatePage());
+		routePosts.put("/login", new Authenticated());
 	}
 	
 	
@@ -43,7 +49,7 @@ public class UserController extends BaseServlet{
 		if(cmd!=null) {
 			cmd.execute(req, resp);
 		}else {
-			logger.info(Color.GREEN+"Another path: "+ path + Color.GREEN);
+			logger.info(Color.GREEN+"Another path get: "+ path + Color.RESET);
 		}
 	}
 	@Override
@@ -53,7 +59,7 @@ public class UserController extends BaseServlet{
 		if(cmd!=null) {
 			cmd.execute(req, resp);
 		}else {
-			logger.info(Color.GREEN+"Another path: "+ path + Color.GREEN);
+			logger.info(Color.GREEN+"Another path post: "+ path + Color.RESET);
 		}
 	}
 }

@@ -9,4 +9,5 @@ public interface UserService {
 	List<User> findAll();
 	User findById(int id);
 	List<User> findByDonationId(int donationId);
+	User authenticated(String email, String password);
 }

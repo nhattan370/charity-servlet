@@ -70,4 +70,38 @@ public class UserDAOImpl implements UserDAO{
 		return users;
 	}
 
+	@Override
+	public User findByUsernamePassword(String email, String password) {
+		String query = "SELECT u.*, r.id AS role_id, r.role_name"
+				+ " FROM user u"
+				+ " JOIN role r ON u.role_id = r.id"
+				+ " WHERE u.email=? AND u.password=?";
+		User user = null;
+		try(Connection con = DBConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(query)){
+			ps.setString(1, email);
+			ps.setString(2, password);
+			try(ResultSet rs = ps.executeQuery()){
+				if(rs.next()) {
+					Role role = new Role(rs.getInt("role_id"), rs.getString("role_name"));
+					user = new User(rs.getInt("id"), 
+							rs.getString("email"),
+							rs.getString("password"), 
+							rs.getString("user_name"), 
+							role, 
+							rs.getString("address"), 
+							rs.getString("full_name"), 
+							rs.getString("phone_number"), 
+							rs.getString("note"), 
+							rs.getTimestamp("created").toLocalDateTime(), 
+							rs.getInt("status"));
+				}
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		logger.info(share.Color.GREEN+ user.toString() +share.Color.RESET);
+		return user;
+	}
+
 }
