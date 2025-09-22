@@ -62,3 +62,69 @@ h2 {
     text-align: center;
     margin-top: 10px;
 }
+.demo-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.demo-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff5722;  /* cam nổi bật */
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+}
+
+.demo-link a:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 12px rgba(0,0,0,0.3);
+}
+/* Nút Login */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #2196F3, #21CBF3); /* xanh gradient */
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-login:hover {
+    background: linear-gradient(45deg, #1976D2, #1EA9D9); /* xanh đậm hơn khi hover */
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 14px rgba(0,0,0,0.3);
+}
+
+/* Nút Demo (giữ style đã làm) */
+.demo-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.demo-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff5722;  /* cam nổi bật */
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+}
+
+.demo-link a:hover {
+    background-color: #e64a19;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 12px rgba(0,0,0,0.3);
+}

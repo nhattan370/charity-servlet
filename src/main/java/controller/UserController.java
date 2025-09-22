@@ -15,6 +15,7 @@ import command.CommandPost;
 import command.get.DetailPage;
 import command.get.HomePage;
 import command.get.LoginPage;
+import command.get.TestAccount;
 import command.get.TestPage;
 import command.post.DonatePage;
 import command.post.Authenticated;
@@ -22,7 +23,7 @@ import command.post.Logout;
 import share.BaseServlet;
 import share.Color;
 
-@WebServlet({"/home","/detail","/test","", "/auth/donate","/login", "/logout", "/login-page"})
+@WebServlet({"/home","/detail","", "/auth/donate","/login", "/logout", "/login-page", "/test-account"})
 public class UserController extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(UserController.class.getName());
@@ -37,6 +38,7 @@ public class UserController extends BaseServlet{
 		routeGets.put("/test", new TestPage());
 		routeGets.put("/login-page", new LoginPage());
 		routeGets.put("/logout", new Logout());
+		routeGets.put("/test-account", new TestAccount());
 		routePosts.put("/auth/donate", new DonatePage());
 		routePosts.put("/login", new Authenticated());
 	}

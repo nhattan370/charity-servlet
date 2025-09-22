@@ -30,6 +30,12 @@
         <div class="form-group">
             <button type="submit">Login</button>
         </div>
+        <div class="demo-link">
+		    <a href="${pageContext.request.contextPath}/test-account" target="_blank">
+		        🚀 Dùng thử tài khoản demo
+		    </a>
+		</div>
+
         <c:remove var="error" scope="session"/>
     </form>
 </div>
